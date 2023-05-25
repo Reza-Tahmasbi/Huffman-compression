@@ -1,20 +1,29 @@
 #include "MinHeap.cpp"
 #include <iostream>
 #include <map>
-int main() {
-    MinHeap<std::pair<char, int>> minHeap;
+#include <string>
+using namespace std;
 
-    // while (!minHeap.empty()) {
-    //     std::cout << minHeap.top() << " ";
-    //     minHeap.pop();
-    // }
-    // std::cout << std::endl;
-
-    return 0;
+void buildFreqArr(map<char, int> frequencyMap, int* ptrFreq){
+    // Count the frequency of each character in the input string
+    map<char,int>::iterator it;
+    int counter = 0;
+    for (it = frequencyMap.begin(); it != frequencyMap.end(); it++) {
+        *(ptrFreq+counter) = it->second;
+        counter++;
+    }
 }
-
-std::map<char, int> buildDictionary(std::string& input){
-    std::map<char, int> frequencyMap;
+void buildKeyArr(map<char, int> frequencyMap, char* ptrKey){
+    // Count the frequency of each character in the input string
+    map<char,int>::iterator it;
+    int counter = 0;
+    for (it = frequencyMap.begin(); it != frequencyMap.end(); it++) {
+        *(ptrKey+counter) = it->first;
+        counter++;
+    }
+}
+map<char, int> buildMap(string& input){
+    map<char, int> frequencyMap;
     // Count the frequency of each character in the input string
     for (char ch : input) {
         frequencyMap[ch]++;
@@ -22,11 +31,25 @@ std::map<char, int> buildDictionary(std::string& input){
     return frequencyMap;
 }
 
-MinHeap<std::pair<char, int>> buildHeapFromDictionaary(std::map<char, int> frequencyMap){
-    MinHeap<std::pair<char, int>> minHeap;
-    // Count the frequency of each character in the input string
-    for (auto& pair: frequencyMap) {
-        minHeap.push(pair);
-    }
-    return minHeap;
+// Driver code
+int main()
+{
+    string input;
+    cout << "pls in ina: \n";
+    cin >> input;
+	char key[40];
+    char *ptrKey = key;
+	int freq[40];
+	int *ptrfreq = freq;
+    map<char, int> myMap = buildMap(input);
+    int size = myMap.size();
+    buildFreqArr(myMap, ptrfreq);
+    buildKeyArr(myMap, ptrKey);    
+	HuffmanCodes(key, freq, size);
+
+	return 0;
 }
+
+
+
+
