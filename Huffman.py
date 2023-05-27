@@ -10,7 +10,7 @@ def huffman_encoder_decoder(str):
     for char in str:
         encodedString += huffmanTree.codeMap[char]
     decodedString = huffmanTree.decodeFile(huffmanTree.root, encodedString)
-    return encodedString, decodedString, huffmanTree.codeMap, huffmanTree.freqMap
+    return encodedString, decodedString, huffmanTree.codeMap, huffmanTree.freqMap, huffmanTree.root
 
 
 class Huffman:
