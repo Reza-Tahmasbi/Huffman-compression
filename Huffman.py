@@ -2,45 +2,48 @@ from collections import defaultdict
 from MinHeap import *
 
 
-def huffman_encoder_decoder(str):
-    huffmanTree = Huffman()
-    huffmanTree.findFreq(str)
+def huffman_encoder_decoder(string):
+    huffmanTree = Huffman(code_map=None, freq_map=None)
+    huffmanTree.findFreq(string)
     encodedString = ""
     huffmanTree.HuffmanCodes()
-    for char in str:
-        encodedString += huffmanTree.codeMap[char]
-    decodedString = huffmanTree.decodeFile(huffmanTree.root, encodedString)
-    return encodedString, decodedString, huffmanTree.codeMap, huffmanTree.freqMap, huffmanTree.root
+    for char in string:
+        encodedString += huffmanTree.code_map[char]
+    decodedString = decodeString(huffmanTree.root, encodedString)
+    return encodedString, decodedString, huffmanTree.code_map, huffmanTree.freq_map, huffmanTree.root
 
 
 class Huffman:
-    def __init__(self, codeMap={}, freqMap=None):
-        if freqMap is None:
-            freqMap = defaultdict(int)
-        self.codeMap = codeMap
-        self.freqMap = freqMap
+    def __init__(self, code_map=None, freq_map=None):
+        self.root = None
+        if code_map is None:
+            code_map = {}
+        if freq_map is None:
+            freq_map = defaultdict(int)
+        self.code_map = code_map
+        self.freq_map = freq_map
 
-    def printCodes(self, root, string):
+    def printNodes(self, root, string):
         if root is None:
             return
         if root.data != '$':
             print(root.data, ":", string)
-        self.printCodes(root.left, string + "0")
-        self.printCodes(root.right, string + "1")
+        self.printNodes(root.left, string + "0")
+        self.printNodes(root.right, string + "1")
 
-    def storeCodes(self, root, string):
+    def saveBinary(self, root, string):
         if root is None:
             return
         if root.key != '$':
-            self.codeMap[root.key] = string
-        self.storeCodes(root.left, string + "0")
-        self.storeCodes(root.right, string + "1")
+            self.code_map[root.key] = string
+        else:
+            self.saveBinary(root.left, string + "0")
+            self.saveBinary(root.right, string + "1")
 
     def HuffmanCodes(self):
-        global minHeap
         minHeap = MinHeap()
-        for key in self.freqMap:
-            node = MinHeapNode(key, self.freqMap[key])
+        for key in self.freq_map:
+            node = MinHeapNode(key, self.freq_map[key])
             minHeap.insert(node)
         while minHeap.size > 1:
             left = minHeap.extract_min()
@@ -49,26 +52,27 @@ class Huffman:
             top.left = left
             top.right = right
             minHeap.insert(top)
-
         self.root = minHeap.extract_min()
-        self.storeCodes(self.root, "")
+        self.saveBinary(self.root, "")
+        if self.root.left is None and self.root.right is None:
+            self.code_map[self.root.key] = "0"
 
     def findFreq(self, string):
         for char in string:
-            self.freqMap[char] += 1
+            self.freq_map[char] += 1
 
-    def decodeFile(self, root, string):
-        ans = ""
-        current = root
-        n = len(string)
-        for i in range(n):
-            if string[i] == '0':
-                current = current.left
-            else:
-                current = current.right
+def decodeString(root, string):
+    result_str = ""
+    currentNode = root
+    n = len(string)
+    for i in range(n):
+        if string[i] == '0':
+            currentNode = currentNode.left
+        else:
+            currentNode = currentNode.right
 
-            # reached leaf node
-            if current.left is None and current.right is None:
-                ans += current.key
-                current = root
-        return ans
+        # reached leaf node
+        if currentNode.left is None and currentNode.right is None:
+            result_str += currentNode.key
+            currentNode = root
+    return result_str
