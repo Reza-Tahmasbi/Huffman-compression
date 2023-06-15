@@ -47,7 +47,14 @@ Python was chosen as the programming language for this project due to its simpli
 The Qt GUI framework was selected for this project primarily because of its extensive documentation. Qt's comprehensive documentation greatly facilitates the process of developing GUI applications using Python. It provides clear examples, tutorials, and references, enabling developers to quickly grasp and utilize the power of GUI programming with Python.
 By combining the simplicity of Python with the capabilities of the Qt framework, Huffman Compression aims to offer a user-friendly and efficient compression tool for various types of data.
 ## Getting Started
+
 To use Huffman Compression, follow these steps:
+
+1. Clone the project repository from GitHub.
+2. Install the required dependencies, including Python and the Qt framework.
+3. Run the main Python script to launch the Huffman Compression application.
+4. Explore the different compression features provided by the application.
+5. Enjoy efficient data compression and storage!
 
 ## Contributions
 Contributions to Huffman Compression are welcome! If you encounter any issues, have suggestions for improvements, or would like to add new features, please feel free to submit a pull request. We appreciate your contribution to making Huffman Compression even better.
