@@ -35,7 +35,7 @@ The project provides statistical calculations related to compression, such as co
 ## Design
 
 The Huffman tree in this project is visualized using the tikinter library with the help of the canvas module. This allows for an interactive and visually appealing representation of the Huffman coding tree.
-![Image description](image_path_or_url)
+![Image description]([image_path_or_url](https://github.com/Reza-Tahmasbi/Huffman-compression/blob/master/huffman%20coding.jpeg))
 
 The project is entirely implemented in Python, utilizing the Qt GUI framework. Qt offers advanced graphical programming capabilities and facilitates efficient drawing operations. By leveraging the features and functionality provided by Qt, the project delivers a robust and versatile user interface.
 
@@ -48,6 +48,11 @@ By combining the simplicity of Python with the capabilities of the Qt framework,
 ## Getting Started
 To use Huffman Compression, follow these steps:
 
+## Hafez Documentation Compression:
+Hafez, also known as Khwāja Shams-ud-Dīn Muḥammad Ḥāfeẓ-e Shīrāzī, was a Persian poet from the 14th century. He is widely regarded as one of the most celebrated and influential poets in Persian literature. His works are known for their deep wisdom, mystical themes, and intricate poetic structures.
+
+By applying Huffman Compression to Hafez documentation, we aim to provide an efficient way of storing and transmitting these treasured poems while maintaining their essence. This feature enables users to compress and decompress Hafez's poetry with ease.
+
 Clone the project repository from GitHub.
 Install the required dependencies, including Python and the Qt framework.
 Run the main Python script to launch the Huffman Compression application.
@@ -56,6 +61,13 @@ Enjoy efficient data compression and storage!
 
 ## Contributions
 Contributions to Huffman Compression are welcome! If you encounter any issues, have suggestions for improvements, or would like to add new features, please feel free to submit a pull request. We appreciate your contribution to making Huffman Compression even better.
+
+## Project Contributors
+We would like to acknowledge and thank the following coders for their contributions to this project:
+
+Mohammad Biabani - @Mohammad-Biabani
+Reza Tahmasbi - @rezatb
+Ali Aziz - @S-AliAziz
 
 ## License
 Huffman Compression is licensed under the **RTB** License. You are free to use, modify, and distribute the project in accordance with the terms and conditions of this license. See the LICENSE file for more details.
