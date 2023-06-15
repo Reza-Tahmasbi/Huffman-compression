@@ -7,7 +7,8 @@ This feature enables users to compress individual strings using the Huffman codi
 - **Paragraph Compression in Words:**
 With this feature, users can compress entire paragraphs by encoding the words using Huffman coding. This allows for efficient storage and transmission of textual data.
 - **Hafez Documentation Compression:**
-Hafez documentation is a specific type of text commonly found in various domains. This feature focuses on compressing such documentation, enabling efficient storage and retrieval of this type of information.
+Hafez, also known as Khwāja Shams-ud-Dīn Muḥammad Ḥāfeẓ-e Shīrāzī, was a Persian poet from the 14th century. He is widely regarded as one of the most celebrated and influential poets in Persian literature. His works are known for their deep wisdom, mystical themes, and intricate poetic structures.
+By applying Huffman Compression to Hafez documentation, we aim to provide an efficient way of storing and transmitting these treasured poems while maintaining their essence. This feature enables users to compress and decompress Hafez's poetry with ease.
 - **Image Compression:**
 Huffman Compression also supports image compression. It applies the Huffman coding technique to represent image data more efficiently, reducing file size while preserving image quality.
 - **Smooth and Simple UI:**
@@ -15,7 +16,7 @@ The project offers a user-friendly interface, making it easy for users to intera
 - **Calculations:**
 The project provides statistical calculations related to compression, such as compression ratio, compression time, and decompression time. These calculations allow users to evaluate the effectiveness and efficiency of the compression process.
 ## Encoding example
-#### String : hello coders
+#### String : Hello Coders
 
 ### Huffman Table
 | Character | Frequency | Code   |
@@ -47,17 +48,6 @@ The Qt GUI framework was selected for this project primarily because of its exte
 By combining the simplicity of Python with the capabilities of the Qt framework, Huffman Compression aims to offer a user-friendly and efficient compression tool for various types of data.
 ## Getting Started
 To use Huffman Compression, follow these steps:
-
-## Hafez Documentation Compression:
-Hafez, also known as Khwāja Shams-ud-Dīn Muḥammad Ḥāfeẓ-e Shīrāzī, was a Persian poet from the 14th century. He is widely regarded as one of the most celebrated and influential poets in Persian literature. His works are known for their deep wisdom, mystical themes, and intricate poetic structures.
-
-By applying Huffman Compression to Hafez documentation, we aim to provide an efficient way of storing and transmitting these treasured poems while maintaining their essence. This feature enables users to compress and decompress Hafez's poetry with ease.
-
-Clone the project repository from GitHub.
-Install the required dependencies, including Python and the Qt framework.
-Run the main Python script to launch the Huffman Compression application.
-Explore the different compression features provided by the application.
-Enjoy efficient data compression and storage!
 
 ## Contributions
 Contributions to Huffman Compression are welcome! If you encounter any issues, have suggestions for improvements, or would like to add new features, please feel free to submit a pull request. We appreciate your contribution to making Huffman Compression even better.
