@@ -25,7 +25,9 @@ def save_string_to_file(string, filename):
 
 def encode_image(image_path):
     image = cv2.imread(image_path)
+    print(image)
     image_array = np.array(image)
+    print(image_array.shape)
     huffmanTree = Huffman(code_map=None, freq_map=None)
     huffmanTree.findFreqImg(image_array)
     encodedString = ""
@@ -41,8 +43,8 @@ def encode_image(image_path):
         decoded_array[idx] = decodeString(huffmanTree.root, code)
     # decodedString = decodeString(huffmanTree.root, encodedString)
     decoded_array = decoded_array.astype(np.uint8)
-    cv2.imwrite('image2.jpg', decoded_array) # saves decoded image as jpg
-    cv2.imwrite('image23.jpg', encoded_array.astype(np.uint8)) # saves encoded image as jpg
+    cv2.imwrite('saved_image/image2.jpg', decoded_array) # saves decoded image as jpg
+    cv2.imwrite('saved_image/image23.jpg', encoded_array.astype(np.uint8)) # saves encoded image as jpg
     np.save("output", encoded_array) # save encoded image in a textfile
     encoded_array = encoded_array.astype(int)
     flattened_array = encoded_array.reshape(-1, encoded_array.shape[-1])
