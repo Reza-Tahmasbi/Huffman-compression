@@ -61,9 +61,11 @@ Contributions to Huffman Compression are welcome! If you encounter any issues, h
 
 ## Project Contributors
 We would like to acknowledge and thank the following coders for their contributions to this project:
-
+<br>
 Mohammad Biabani - @Mohammad-Biabani
+<br>
 Reza Tahmasbi - @rezatb
+<br>
 Ali Aziz - @S-AliAziz
 
 ## License
