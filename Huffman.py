@@ -1,5 +1,7 @@
 from collections import defaultdict
 from MinHeap import *
+import cv2
+import numpy as np
 
 
 def huffman_encoder_decoder(string):
@@ -12,6 +14,47 @@ def huffman_encoder_decoder(string):
     decodedString = decodeString(huffmanTree.root, encodedString)
     return encodedString, decodedString, huffmanTree.code_map, huffmanTree.freq_map, huffmanTree.root
 
+# def huffman_encoder_decoder(string):
+#     huffmanTree = Huffman(code_map=None, freq_map=None)
+#     isParagraph = huffmanTree.findFreq(string)
+#     encodedString = ""
+#     huffmanTree.HuffmanCodes()
+#     if not isParagraph:
+#         for char in string:
+#             encodedString += huffmanTree.code_map[char]
+#     else:
+#         for word in string.lower().split():
+#             encodedString += huffmanTree.code_map[word]
+#     decodedString = decodeString(huffmanTree.root, encodedString)
+#     return encodedString, decodedString, huffmanTree.code_map, huffmanTree.freq_map, huffmanTree.root, isParagraph
+
+def encode_decode_image(image_path):
+    image = cv2.imread(image_path)
+    image_array = np.array(image)
+    huffmanTree = Huffman(code_map=None, freq_map=None)
+    huffmanTree.findFreqImg(image_array)
+    encodedString = ""
+    huffmanTree.HuffmanCodes()
+    # encode
+    encoded_array = np.empty_like(image_array, dtype=object)
+    for idx, digit in np.ndenumerate(image_array):
+        encoded_array[idx] = huffmanTree.code_map[str(digit)]
+        # encodedString += huffmanTree.code_map[str(digit)]
+    # decode
+    decoded_array = np.empty_like(encoded_array)
+    for idx, code in np.ndenumerate(encoded_array):
+        decoded_array[idx] = decodeString(huffmanTree.root, code)
+    # decodedString = decodeString(huffmanTree.root, encodedString)
+    decoded_array = decoded_array.astype(np.uint8)
+    cv2.imwrite('image2.jpg', decoded_array) # saves decoded image as jpg
+    cv2.imwrite('image23.jpg', encoded_array.astype(np.uint8)) # saves encoded image as jpg
+    np.save("output", encoded_array) # save encoded image in a textfile
+    encoded_array = encoded_array.astype(int)
+    flattened_array = encoded_array.reshape(-1, encoded_array.shape[-1])
+
+    # Save the flattened array to a text file
+    np.savetxt("output.txt", flattened_array, delimiter=',',  fmt='%d')
+    return encoded_array, decoded_array, huffmanTree.code_map, huffmanTree.freq_map, huffmanTree.root
 
 class Huffman:
     def __init__(self, code_map=None, freq_map=None):
@@ -26,7 +69,7 @@ class Huffman:
     def printNodes(self, root, string):
         if root is None:
             return
-        if root.data != '$':
+        if root.data != '@':
             print(root.data, ":", string)
         self.printNodes(root.left, string + "0")
         self.printNodes(root.right, string + "1")
@@ -34,21 +77,26 @@ class Huffman:
     def saveBinary(self, root, string):
         if root is None:
             return
-        if root.key != '$':
+        # leaf node binary code
+        if root.key != '@':
             self.code_map[root.key] = string
+        # traversing tree
         else:
             self.saveBinary(root.left, string + "0")
             self.saveBinary(root.right, string + "1")
+            
 
+    # finds the binary value of each key
     def HuffmanCodes(self):
         minHeap = MinHeap()
+        # fill min-heap with nodes
         for key in self.freq_map:
             node = MinHeapNode(key, self.freq_map[key])
             minHeap.insert(node)
         while minHeap.size > 1:
             left = minHeap.extract_min()
             right = minHeap.extract_min()
-            top = MinHeapNode('$', left.freq + right.freq)
+            top = MinHeapNode('@', left.freq + right.freq)
             top.left = left
             top.right = right
             minHeap.insert(top)
@@ -61,6 +109,8 @@ class Huffman:
         for char in string:
             self.freq_map[char] += 1
 
+
+# this function decodes the encoded string
 def decodeString(root, string):
     result_str = ""
     currentNode = root
@@ -71,7 +121,7 @@ def decodeString(root, string):
         else:
             currentNode = currentNode.right
 
-        # reached leaf node
+        # if reached leaf node
         if currentNode.left is None and currentNode.right is None:
             result_str += currentNode.key
             currentNode = root

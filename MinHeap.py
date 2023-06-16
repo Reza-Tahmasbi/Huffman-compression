@@ -1,4 +1,4 @@
-# A Huffman tree node
+# define min-heap node class
 class MinHeapNode:
     def __init__(self, key, freq):
         self.key = key
@@ -6,13 +6,13 @@ class MinHeapNode:
         self.left = None
         self.right = None
 
-    def __lt__(self, other):
-        if self.freq == other.freq:
-            return self.key < other.key
-        return self.freq < other.freq
+    # def __lt__(self, other):
+    #     if self.freq == other.freq:
+    #         return self.key < other.key
+    #     return self.freq < other.freq
 
 
-# A class representing a min heap
+# define min-heap class
 class MinHeap:
     def __init__(self):
         self.heap = []
@@ -26,16 +26,20 @@ class MinHeap:
 
     def right_child(self, i):
         return 2 * i + 2
+    
 
+    # insert a new node to min-heap tree
     def insert(self, node):
         self.heap.append(node)
         self.size += 1
         i = self.size - 1
         parent = self.parent(i)
+        # sorting min-heap nodes with order of logn
         while i != 0 and self.heap[parent].freq > self.heap[i].freq:
             self.heap[i], self.heap[parent] = self.heap[parent], self.heap[i]
             i = parent
 
+    # extract the root node(smallest value)
     def extract_min(self):
         if self.size == 0:
             return None
@@ -49,7 +53,9 @@ class MinHeap:
         self.size -= 1
         self.min_heapify(0)
         return root
+    
 
+    # min-heapify algorithm from notebook, nlogn
     def min_heapify(self, i):
         smallest = i
         left = self.left_child(i)
