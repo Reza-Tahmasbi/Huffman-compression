@@ -68,8 +68,5 @@ Reza Tahmasbi - @rezatb
 <br>
 Ali Aziz - @S-AliAziz
 
-## License
-Huffman Compression is licensed under the **RTB** License. You are free to use, modify, and distribute the project in accordance with the terms and conditions of this license. See the LICENSE file for more details.
-
 ## Contact
 If you have any questions, suggestions, or feedback, please feel free to contact the project maintainers at [rezatb2002@gmail.com]. We appreciate your interest in Huffman Compression and look forward to hearing from you.
